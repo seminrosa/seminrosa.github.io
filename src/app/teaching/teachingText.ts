@@ -17,6 +17,33 @@ export const TEACHING_BELIEFS = [
 
 export const COURSES = [
     {
+        school: "Penn State University",
+        courses: [
+            {
+                title: "MGMT:528 Organizational Behaviour (Ph.D.)",
+                sections: [
+                    "Fall 2025 (6 Students)",
+                    "Fall 2024 (4 Students)",
+                ],
+                feedbacks: [
+                    "\"This course not only deepened my understanding or OB but also helped me think critically and connect different concepts.\""
+                ]
+            },
+            {
+                title: "BA:801 Managing People in Organizations (MBA)",
+                sections: [
+                    "Fall 2025 (96 students)",
+                    "Fall 2024 (104 students)",
+                ],
+                feedbacks: [
+                    "\"The topics were both engaging and insightful, and the activities, case studies, and group assignments met my expectations for the course. Additionally, the professor was genuinely concerned about our understanding and made an effort to involve the entire class, ensuring everyone participated and learned effectively.\"",
+                    "\"Professor Park is clearly passionate about the material she teaches. She is very smart and academically accomplished. She is very high energy during lectures.\"",
+                    "\"This course was effective in helping me learn more about how to manage people and understand the best ways to achieve success as a leader.\""
+                ]
+            }
+        ]
+    },
+    {
         school: "University of Iowa",
         courses: [
             {

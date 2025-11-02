@@ -2,7 +2,7 @@ export const OVERVIEW = "While Dr. Park's research interest covers several pheno
 
 export const RESEARCH = [
     {
-        title: "Teams and Network",
+        title: "Understanding Teams with Network Lens",
         description: "As a meso-level management researcher, I have thoroughly immersed myself in the extant teams literature. I view that the network approach complements teams research and can synergistically improve our understanding of the dynamic channels and processes of intra-group.",
         papers: [
             {
@@ -21,7 +21,12 @@ export const RESEARCH = [
                 title: "Book chapter on Network Thinking in Teams Research",
                 citation: "Grosser, T., Park, S., Mathieu, J. & Roebuck, A. (2019). Network Thinking in Teams Research. In D. Brass, S. Borgatti (Eds.) Social Networks at Work (SIOP Organizational Frontiers Series). New York, NY: Routledge.",
                 link: "https://doi.org/10.4324/9780203701942"
-            }
+            },
+            {
+                title: "Review on Subgroup Dynamics",
+                citation: "Moon, J., Oh, C., Tsai, C-Y, & Park, S., [Bridging Attribue and Network Views of Subgroups] Journal of Organizational Behavior, 3rd R&R.",
+                description: "This integrative review unites attribute- and network-based perspectives to propose a system-dynamics framework that explains how individual attributes and network ties coevolve to shape subgroup dynamics over time."
+            },
         ]
     },
     {
@@ -36,7 +41,7 @@ export const RESEARCH = [
             },
             {
                 title: "Individual Conflict Experiences in Mutliteam Context ",
-                citation: "Park, S., Luciano, M., Mathieu, J. E., & Fenters, V. (In-Press) When and why conflict helps and hurts: Examining intra-individual conflict experience and task performance. Academy of Management Journal.",
+                citation: "Park, S., Luciano, M., Mathieu, J. E., & Fenters, V. (2024) When and why conflict helps and hurts: Examining intra-individual conflict experience and task performance. Academy of Management Journal, 67 (1), 33-60.",
                 link: "https://doi.org/10.5465/amj.2021.0285",
                 description: "Using the behavioral manifestation of team conflict and drawing upon the self-regulatory process of cognitive resources, we advance and test a new framework to investigate the influence of members’ conflict experiences on their ongoing task performance. Specifically, I differentiate conflict in terms of its directionality (sender vs. receiver), and team boundaries (within vs. between team), and explore the underlying mechanisms that may change their effects on task performance.",
             },
@@ -54,7 +59,7 @@ export const RESEARCH = [
         papers: [
             {
                 title: "Membership Change and Human Capital Resources Alignment",
-                citation: "Gallagher, P., Park, S., Roebuck, A.*, Mathieu, J., &, Dong, Y. [Membership change and Human Capital Resources Alignment] Academy of Management Journal, 1st Revision.",
+                citation: "Gallagher, P., Park, S., Roebuck, A., Mathieu, J., &, Dong, Y. [Membership change and Human Capital Resources Alignment] Journal of Applied Psychology, 3rd R&R.",
                 description: "This paper explores a configural theory about how organizations can identify optimal configurations of team members’ task-related human capital and proposed that an effective and practically feasible team configuration needs to balance two forces: relational resources and situational relevance. Using a sample of student teams competing in a 10-week business simulation, my colleagues and I have tested how human capital configuration change (due to membership change) impacts competence alignments and team performance over time."
             }
         ]
@@ -77,8 +82,13 @@ export const RESEARCH = [
             },
             {
                 title: "Episodic and Event-based Team Processes in Multiteam Systems",
-                citation: "Luciano, M., Park, S., Mathieu, J., & Fenters, V., [Episodic and Event-based Team Process] Organization Science, Under review.",
+                citation: "Luciano, M. & Park, S., [Episodic and Event-based Team Process] Journal of Organizational Behavior, 1st Round Revision.",
                 description: "Using the unobtrusive measurement technique, we are expanding the theory of team process to within and between interdependent teams and linking them to multiple team performance outcomes. Our findings from analyses of 1,041 temporal units of data derived from continuous audio and video recordings of emergency response systems revealed mixed effects, both confirming and challenging elements of existing team process theory."
+            },
+            {
+                title: "Co-evolution of Conflict Relations and Team Perceptions",
+                citation: "Park, S., Reinke, K., & Schecter, A. [Coevolving Conflict and Perceptions in Teams] Organization Science, 1st Round Revision.",
+                description: "This study adopts a dynamic systems perspective to show how conflict and team perceptions coevolve, revealing that the structure of cognitive conflict—not just its presence—shapes team performance and can be redirected through targeted interventions."
             }
         ]
     }
