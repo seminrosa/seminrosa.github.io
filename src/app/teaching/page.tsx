@@ -30,17 +30,7 @@ export default function Teaching() {
                     <div key={index}>
                         <Typography className={style.schoolName} variant="subtitle1">{schoolCourses.school}</Typography>
                         {schoolCourses.courses.map((course: Course, index: number) => (
-                            <div key={index}>
-                                <Typography variant="subtitle2" fontWeight="bold">{course.title}</Typography>
-                                {course.sections.map((section: string, index: number) => (
-                                    <Typography key={index} variant="body1">{section}</Typography>
-                                ))}
-                                <br />
-                                {course.feedbacks ? course.feedbacks?.map((feedback: string, index: number) => (
-                                    <Typography key={index} className={style.feedback} variant="body1">{feedback}</Typography>
-                                )) : null}
-                                <br />
-                            </div>
+                            <CourseItem key={index} course={course} />
                         ))}
                         <br />
                     </div>
@@ -62,6 +52,31 @@ function BeliefItem({belief}: {belief: TeachingBelief}) {
             <Collapse in={open}>
                 <div className={style.beliefContainer}>
                     <Typography align="justify" variant="body1">{belief.description}</Typography>
+                </div>
+            </Collapse>
+        </div>
+    );
+}
+
+function CourseItem({course}: {course: Course}) {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <div>
+            <div onClick={() => setOpen(!open)} className={style.expandButton}>
+                {open ? <ExpandLess /> : <ExpandMore />}
+                <Typography variant="subtitle2" fontWeight="bold">{course.title}</Typography>
+            </div>
+            <Collapse in={open}>
+                <div className={style.beliefContainer}>
+                    {course.sections.map((section: string, index: number) => (
+                        <Typography key={index} variant="body1">{section}</Typography>
+                    ))}
+                    <br />
+                    {course.feedbacks ? course.feedbacks?.map((feedback: string, index: number) => (
+                        <Typography key={index} className={style.feedback} variant="body1">{feedback}</Typography>
+                    )) : null}
+                    <br />
                 </div>
             </Collapse>
         </div>
