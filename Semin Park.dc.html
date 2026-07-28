@@ -471,6 +471,7 @@ class Component extends DCLogic {
     this.applyTheme();
     if (this.props.motif !== false) this._startNetwork();
     this._startReveal();
+    this._setupMobileNav();
   }
   componentDidUpdate() {
     this.applyTheme();
@@ -481,6 +482,17 @@ class Component extends DCLogic {
   componentWillUnmount() {
     if (this._raf) cancelAnimationFrame(this._raf);
     if (this._ro) this._ro.disconnect();
+  }
+
+  _setupMobileNav() {
+    const root = this.rootRef.current;
+    if (!root) return;
+    const toggle = root.querySelector('#mobile-menu-toggle');
+    const links = root.querySelector('[data-mobile-nav-links]');
+    if (!toggle || !links) return;
+    links.addEventListener('click', (e) => {
+      if (e.target.closest('a')) toggle.checked = false;
+    });
   }
 
   _startReveal() {
