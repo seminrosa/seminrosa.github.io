@@ -14,6 +14,7 @@
 <style>
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  img, video, canvas, svg { max-width: 100%; height: auto; }
   :root{
     --bg:#FFFFFF; --band:#F2F4F7; --card:#F7F8FA; --nav-bg:rgba(255,255,255,0.86);
     --ink:#041E42; --body:#33404F; --muted:#6B7684;
@@ -27,6 +28,120 @@
   ::selection { background: rgba(30,77,140,0.22); }
   @keyframes floatIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   a { color: inherit; }
+
+  /* ===== RESPONSIVE / MOBILE ===== */
+  @media (max-width: 768px) {
+    /* NAV: hide links, show hamburger */
+    [data-mobile-nav-links] {
+      display: none !important;
+    }
+    [data-mobile-menu-btn] {
+      display: flex !important;
+    }
+    [data-mobile-nav].open [data-mobile-nav-links] {
+      display: flex !important;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: var(--nav-bg);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      align-items: flex-start;
+    }
+
+    /* HERO: single column, smaller type */
+    [data-hero-grid] {
+      grid-template-columns: 1fr !important;
+      gap: 40px !important;
+      padding: 64px 20px 56px !important;
+    }
+    [data-hero-grid] h1 {
+      font-size: 38px !important;
+    }
+    [data-hero-headshot] {
+      justify-self: center !important;
+    }
+    [data-hero-headshot] > div:first-child {
+      width: 220px !important;
+    }
+    [data-hero-headshot] image-slot {
+      width: 220px !important;
+      height: 268px !important;
+    }
+
+    /* QUICK FACTS: 2 columns */
+    [data-facts-grid] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* RESEARCH: single column */
+    [data-two-col] {
+      grid-template-columns: 1fr !important;
+      gap: 28px !important;
+    }
+    [data-three-col] {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* PUBLICATIONS */
+    [data-pub-row] {
+      grid-template-columns: 1fr !important;
+      gap: 8px !important;
+    }
+
+    /* PROJECTS: single column */
+    [data-projects-grid] {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* PRACTITIONER: single column */
+    [data-practitioner-grid] {
+      grid-template-columns: 1fr !important;
+      gap: 40px !important;
+    }
+
+    /* CONTACT: single column */
+    [data-contact-grid] {
+      grid-template-columns: 1fr !important;
+      gap: 32px !important;
+    }
+
+    /* FOOTER row */
+    [data-footer-row] {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 8px !important;
+    }
+
+    /* General section padding */
+    [data-section-pad] {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+
+    /* Section headings */
+    [data-section-heading] {
+      font-size: 32px !important;
+    }
+
+    /* NAV padding */
+    [data-nav-inner] {
+      padding: 12px 16px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    [data-facts-grid] {
+      grid-template-columns: 1fr !important;
+    }
+    [data-hero-grid] h1 {
+      font-size: 32px !important;
+    }
+  }
 </style>
 <script src="image-slot.js"></script>
 </helmet>
@@ -34,13 +149,16 @@
 <div ref="{{ rootRef }}" style="font-family: 'Libre Franklin', system-ui, sans-serif; color: var(--ink); background: var(--bg); min-height: 100vh; -webkit-font-smoothing: antialiased;">
 
   <!-- NAV -->
-  <div style="position: sticky; top: 0; z-index: 40; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);">
-    <div style="max-width: 1120px; margin: 0 auto; padding: 15px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+  <div data-mobile-nav style="position: sticky; top: 0; z-index: 40; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);">
+    <div data-nav-inner style="max-width: 1120px; margin: 0 auto; padding: 15px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
       <a href="#top" style="text-decoration: none; display: flex; align-items: baseline; gap: 10px;">
         <span style="font-family: 'Source Serif 4', serif; font-size: 21px; font-weight: 500; letter-spacing: -0.01em;">Semin Park</span>
         <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);">Team Science</span>
       </a>
-      <div style="display: flex; align-items: center; gap: 26px; font-size: 14px; color: var(--body);">
+      <button data-mobile-menu-btn onclick="this.closest('[data-mobile-nav]').classList.toggle('open')" style="display: none; align-items: center; justify-content: center; width: 40px; height: 40px; background: none; border: 1px solid var(--line); border-radius: var(--radius-sm); cursor: pointer; color: var(--ink);">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/></svg>
+      </button>
+      <div data-mobile-nav-links style="display: flex; align-items: center; gap: 26px; font-size: 14px; color: var(--body);">
         <a href="#research" style="text-decoration: none;">Research</a>
         <a href="#publications" style="text-decoration: none;">Publications</a>
         <a href="#projects" style="text-decoration: none;">Projects</a>
@@ -56,7 +174,7 @@
     <sc-if value="{{ motifOn }}" hint-placeholder-val="{{ true }}">
       <canvas ref="{{ canvasRef }}" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.9;"></canvas>
     </sc-if>
-    <div style="position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; padding: 96px 32px 76px; display: grid; grid-template-columns: 1.55fr 1fr; gap: 64px; align-items: center;">
+    <div data-hero-grid style="position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; padding: 96px 32px 76px; display: grid; grid-template-columns: 1.55fr 1fr; gap: 64px; align-items: center;">
       <div>
         <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px;">Assistant Professor · Management &amp; Organization</div>
         <h1 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 62px; line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 26px;">Understanding how<br>teams <em style="font-style: italic; color: var(--accent);">connect, evolve,</em><br>and perform.</h1>
@@ -66,7 +184,7 @@
           <a href="#contact" style="text-decoration: none; color: var(--ink); font-size: 14.5px; font-weight: 500; padding: 13px 24px; border-radius: var(--pill); border: 1px solid var(--line-strong);">Collaborate</a>
         </div>
       </div>
-      <div style="justify-self: end;">
+      <div data-hero-headshot style="justify-self: end;">
         <div style="position: relative; width: 288px;">
           <div style="position: absolute; right: -16px; bottom: -16px; width: 100%; height: 100%; background: var(--accent-2); border-radius: var(--radius-sm);"></div>
           <image-slot id="headshot" style="position: relative; width: 288px; height: 350px; display: block; border: 1px solid var(--line);" shape="rounded" radius="6" placeholder="Drop your headshot"></image-slot>
@@ -78,7 +196,7 @@
 
   <!-- QUICK FACTS -->
   <div style="border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--band);">
-    <div style="max-width: 1120px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: repeat(4, 1fr);">
+    <div data-facts-grid style="max-width: 1120px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: repeat(4, 1fr);">
       <sc-for list="{{ facts }}" as="f" hint-placeholder-count="4">
         <div style="padding: 26px 22px; border-left: 1px solid var(--line);">
           <div style="font-family: 'Source Serif 4', serif; font-size: 27px; line-height: 1; margin-bottom: 9px; color: var(--ink);">{{ f.big }}</div>
@@ -89,8 +207,8 @@
   </div>
 
   <!-- RESEARCH -->
-  <div id="research" style="max-width: 1120px; margin: 0 auto; padding: 96px 32px 30px;">
-    <div data-reveal="1" style="display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; margin-bottom: 68px;">
+  <div id="research" data-section-pad style="max-width: 1120px; margin: 0 auto; padding: 96px 32px 30px;">
+    <div data-reveal="1" data-two-col style="display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; margin-bottom: 68px;">
       <div>
         <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px;">01 — Research Identity</div>
         <h2 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 40px; line-height: 1.08; letter-spacing: -0.01em; margin: 0;">Teams as living patterns of interaction.</h2>
@@ -106,7 +224,7 @@
       </div>
     </div>
 
-    <div data-reveal="1" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
+    <div data-reveal="1" data-three-col style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
       <sc-for list="{{ themes }}" as="t" hint-placeholder-count="3">
         <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 26px;">
           <div style="font-family: 'Source Serif 4', serif; font-size: 30px; color: var(--gold); margin-bottom: 16px;">{{ t.num }}</div>
@@ -118,8 +236,8 @@
   </div>
 
   <!-- PUBLICATIONS -->
-  <div id="publications" style="max-width: 1120px; margin: 0 auto; padding: 84px 32px 30px;">
-    <div data-reveal="1" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 40px; border-bottom: 1px solid var(--line-strong); padding-bottom: 22px;">
+  <div id="publications" data-section-pad style="max-width: 1120px; margin: 0 auto; padding: 84px 32px 30px;">
+    <div data-reveal="1" style="display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 40px; border-bottom: 1px solid var(--line-strong); padding-bottom: 22px;">
       <div>
         <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;">02 — Selected Publications</div>
         <h2 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 40px; line-height: 1.05; letter-spacing: -0.01em; margin: 0;">Peer-reviewed work</h2>
@@ -129,7 +247,7 @@
 
     <div data-reveal="1" style="display: flex; flex-direction: column;">
       <sc-for list="{{ pubs }}" as="p" hint-placeholder-count="8">
-        <div style="display: grid; grid-template-columns: 160px 1fr; gap: 28px; padding: 24px 0; border-bottom: 1px solid var(--line);">
+        <div data-pub-row style="display: grid; grid-template-columns: 160px 1fr; gap: 28px; padding: 24px 0; border-bottom: 1px solid var(--line);">
           <div>
             <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 500; color: var(--accent); letter-spacing: 0.02em; line-height: 1.4;">{{ p.outlet }}</div>
             <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); margin-top: 4px;">{{ p.year }}</div>
@@ -148,13 +266,13 @@
 
   <!-- PROJECTS -->
   <div id="projects" style="background: var(--band); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 84px;">
-    <div style="max-width: 1120px; margin: 0 auto; padding: 84px 32px;">
+    <div data-section-pad style="max-width: 1120px; margin: 0 auto; padding: 84px 32px;">
       <div data-reveal="1" style="margin-bottom: 44px;">
         <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;">03 — Ongoing Projects</div>
         <h2 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 40px; line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 14px;">What I'm working on now</h2>
         <p style="font-size: 17px; line-height: 1.6; color: var(--body); max-width: 620px; margin: 0;">A live look at the questions currently on my desk — from manuscripts under review to newly funded explorations of AI and teamwork.</p>
       </div>
-      <div data-reveal="1" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+      <div data-reveal="1" data-projects-grid style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
         <sc-for list="{{ projects }}" as="pr" hint-placeholder-count="4">
           <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 30px 28px; display: flex; flex-direction: column;">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px;">
@@ -170,8 +288,8 @@
   </div>
 
   <!-- TEACHING -->
-  <div id="teaching" style="max-width: 1120px; margin: 0 auto; padding: 84px 32px 30px;">
-    <div data-reveal="1" style="display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; margin-bottom: 48px;">
+  <div id="teaching" data-section-pad style="max-width: 1120px; margin: 0 auto; padding: 84px 32px 30px;">
+    <div data-reveal="1" data-two-col style="display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; margin-bottom: 48px;">
       <div>
         <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px;">04 — Teaching</div>
         <h2 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 40px; line-height: 1.08; letter-spacing: -0.01em; margin: 0;">Teaching across every level.</h2>
@@ -184,7 +302,7 @@
         </div>
       </div>
     </div>
-    <div data-reveal="1" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
+    <div data-reveal="1" data-three-col style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
       <sc-for list="{{ teaching }}" as="lv" hint-placeholder-count="3">
         <div style="border-top: 2px solid var(--ink); padding-top: 20px;">
           <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px;">{{ lv.level }}</div>
@@ -202,8 +320,8 @@
 
   <!-- PRACTITIONER CTA -->
   <div style="background: var(--dark-bg); color: var(--dark-ink); margin-top: 84px;">
-    <div style="max-width: 1120px; margin: 0 auto; padding: 90px 32px;">
-      <div data-reveal="1" style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;">
+    <div data-section-pad style="max-width: 1120px; margin: 0 auto; padding: 90px 32px;">
+      <div data-reveal="1" data-practitioner-grid style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;">
         <div>
           <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dark-accent); margin-bottom: 20px;">05 — For Practitioners</div>
           <h2 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 42px; line-height: 1.06; letter-spacing: -0.01em; margin: 0 0 22px;">Team science, put to work.</h2>
@@ -227,8 +345,8 @@
 
   <!-- CONTACT / FOOTER -->
   <div id="contact" style="background: var(--bg);">
-    <div style="max-width: 1120px; margin: 0 auto; padding: 84px 32px 40px;">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: end; padding-bottom: 46px; border-bottom: 1px solid var(--line-strong);">
+    <div data-section-pad style="max-width: 1120px; margin: 0 auto; padding: 84px 32px 40px;">
+      <div data-contact-grid style="display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: end; padding-bottom: 46px; border-bottom: 1px solid var(--line-strong);">
         <div>
           <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px;">Get in touch</div>
           <h2 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 44px; line-height: 1.02; letter-spacing: -0.02em; margin: 0;">Let's talk about<br>teams.</h2>
@@ -242,7 +360,7 @@
           </sc-for>
         </div>
       </div>
-      <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 26px; font-size: 12.5px; color: var(--muted);">
+      <div data-footer-row style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 26px; font-size: 12.5px; color: var(--muted);">
         <div style="font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em;">Semin Park · Assistant Professor, Management &amp; Organization · Penn State</div>
         <div style="font-family: 'IBM Plex Mono', monospace;">© 2026</div>
       </div>
