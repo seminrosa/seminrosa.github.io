@@ -2,11 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-<<<<<<< HEAD
-    branches: ["newsite"]
-=======
     branches: ["main"]
->>>>>>> 1ad0e95 (initial commit and trigger workflow for new website)
   workflow_dispatch:
 
 permissions:
