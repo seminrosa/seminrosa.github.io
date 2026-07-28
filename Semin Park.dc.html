@@ -38,7 +38,7 @@
     [data-mobile-menu-btn] {
       display: flex !important;
     }
-    [data-mobile-nav].open [data-mobile-nav-links] {
+    #mobile-menu-toggle:checked ~ [data-mobile-nav-links] {
       display: flex !important;
       position: absolute;
       top: 100%;
@@ -51,6 +51,9 @@
       gap: 16px;
       border-bottom: 1px solid var(--line);
       align-items: flex-start;
+    }
+    #mobile-menu-toggle {
+      display: none;
     }
 
     /* HERO: single column, smaller type */
@@ -155,9 +158,10 @@
         <span style="font-family: 'Source Serif 4', serif; font-size: 21px; font-weight: 500; letter-spacing: -0.01em;">Semin Park</span>
         <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);">Team Science</span>
       </a>
-      <button data-mobile-menu-btn onclick="this.closest('[data-mobile-nav]').classList.toggle('open')" style="display: none; align-items: center; justify-content: center; width: 40px; height: 40px; background: none; border: 1px solid var(--line); border-radius: var(--radius-sm); cursor: pointer; color: var(--ink);">
+      <input type="checkbox" id="mobile-menu-toggle">
+      <label data-mobile-menu-btn for="mobile-menu-toggle" style="display: none; align-items: center; justify-content: center; width: 40px; height: 40px; background: none; border: 1px solid var(--line); border-radius: var(--radius-sm); cursor: pointer; color: var(--ink);">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/></svg>
-      </button>
+      </label>
       <div data-mobile-nav-links style="display: flex; align-items: center; gap: 26px; font-size: 14px; color: var(--body);">
         <a href="#research" style="text-decoration: none;">Research</a>
         <a href="#publications" style="text-decoration: none;">Publications</a>
