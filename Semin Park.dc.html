@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&amp;family=Libre+Franklin:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  :root{
+    --bg:#FFFFFF; --band:#F2F4F7; --card:#F7F8FA; --nav-bg:rgba(255,255,255,0.86);
+    --ink:#041E42; --body:#33404F; --muted:#6B7684;
+    --line:rgba(4,30,66,0.12); --line-strong:rgba(4,30,66,0.28);
+    --accent:#1E4D8C; --accent-line:rgba(30,77,140,0.32); --accent-bg:rgba(30,77,140,0.10); --accent-2:#001E44;
+    --gold:#9C6B23; --rust:#9C6B23; --rust-bg:rgba(156,107,35,0.10); --rust-line:rgba(156,107,35,0.28);
+    --dark-bg:#001E44; --dark-ink:#FFFFFF; --dark-body:#C9D3DE; --dark-muted:#93A4B8; --dark-accent:#8FB4DA; --dark-line:rgba(255,255,255,0.18); --dark-btn-bg:#FFFFFF; --dark-btn-fg:#001E44;
+    --radius:10px; --radius-sm:6px; --pill:999px;
+  }
+  body { margin: 0; background: var(--bg); }
+  ::selection { background: rgba(30,77,140,0.22); }
+  @keyframes floatIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  a { color: inherit; }
+</style>
+<script src="image-slot.js"></script>
+</helmet>
+
+<div ref="{{ rootRef }}" style="font-family: 'Libre Franklin', system-ui, sans-serif; color: var(--ink); background: var(--bg); min-height: 100vh; -webkit-font-smoothing: antialiased;">
+
+  <!-- NAV -->
+  <div style="position: sticky; top: 0; z-index: 40; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 15px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+      <a href="#top" style="text-decoration: none; display: flex; align-items: baseline; gap: 10px;">
+        <span style="font-family: 'Source Serif 4', serif; font-size: 21px; font-weight: 500; letter-spacing: -0.01em;">Semin Park</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);">Team Science</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 26px; font-size: 14px; color: var(--body);">
+        <a href="#research" style="text-decoration: none;">Research</a>
+        <a href="#publications" style="text-decoration: none;">Publications</a>
+        <a href="#projects" style="text-decoration: none;">Projects</a>
+        <a href="#teaching" style="text-decoration: none;">Teaching</a>
+        <a href="Notes.dc.html" style="text-decoration: none;">Notes</a>
+        <a href="#contact" style="text-decoration: none; padding: 7px 16px; border: 1px solid var(--ink); border-radius: var(--pill); color: var(--ink);">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div id="top" ref="{{ heroRef }}" style="position: relative; overflow: hidden;">
+    <sc-if value="{{ motifOn }}" hint-placeholder-val="{{ true }}">
+      <canvas ref="{{ canvasRef }}" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.9;"></canvas>
+    </sc-if>
+    <div style="position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; padding: 96px 32px 76px; display: grid; grid-template-columns: 1.55fr 1fr; gap: 64px; align-items: center;">
+      <div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px;">Assistant Professor · Management &amp; Organization</div>
+        <h1 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 62px; line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 26px;">Understanding how<br>teams <em style="font-style: italic; color: var(--accent);">connect, evolve,</em><br>and perform.</h1>
+        <p style="font-size: 18.5px; line-height: 1.62; color: var(--body); max-width: 560px; margin: 0 0 34px;">I study the interpersonal fabric of teams — how relationships, conflict, and interdependence unfold over time — using a <strong style="font-weight: 600;">network and dynamic-systems lens</strong> to explain when collaboration helps and when it hurts.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+          <a href="#research" style="text-decoration: none; background: var(--ink); color: var(--bg); font-size: 14.5px; font-weight: 500; padding: 13px 24px; border-radius: var(--pill);">Explore my research</a>
+          <a href="#contact" style="text-decoration: none; color: var(--ink); font-size: 14.5px; font-weight: 500; padding: 13px 24px; border-radius: var(--pill); border: 1px solid var(--line-strong);">Collaborate</a>
+        </div>
+      </div>
+      <div style="justify-self: end;">
+        <div style="position: relative; width: 288px;">
+          <div style="position: absolute; right: -16px; bottom: -16px; width: 100%; height: 100%; background: var(--accent-2); border-radius: var(--radius-sm);"></div>
+          <image-slot id="headshot" style="position: relative; width: 288px; height: 350px; display: block; border: 1px solid var(--line);" shape="rounded" radius="6" placeholder="Drop your headshot"></image-slot>
+        </div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.06em; color: var(--muted); margin-top: 26px; text-align: right;">Smeal College of Business<br>The Pennsylvania State University</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK FACTS -->
+  <div style="border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--band);">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: repeat(4, 1fr);">
+      <sc-for list="{{ facts }}" as="f" hint-placeholder-count="4">
+        <div style="padding: 26px 22px; border-left: 1px solid var(--line);">
+          <div style="font-family: 'Source Serif 4', serif; font-size: 27px; line-height: 1; margin-bottom: 9px; color: var(--ink);">{{ f.big }}</div>
+          <div style="font-size: 12.5px; line-height: 1.45; color: var(--muted);">{{ f.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- RESEARCH -->
+  <div id="research" style="max-width: 1120px; margin: 0 auto; padding: 96px 32px 30px;">
+    <div data-reveal="1" style="display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; margin-bottom: 68px;">
+      <div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px;">01 — Research Identity</div>
+        <h2 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 40px; line-height: 1.08; letter-spacing: -0.01em; margin: 0;">Teams as living patterns of interaction.</h2>
+      </div>
+      <div>
+        <p style="font-size: 17.5px; line-height: 1.66; color: var(--body); margin: 0 0 18px;">Most team research treats a group as the sum of its members. My work reframes the team as an evolving <strong style="font-weight: 600;">web of relationships</strong> — who trusts, conflicts with, and depends on whom — and traces how those patterns shift moment to moment to shape performance.</p>
+        <p style="font-size: 17.5px; line-height: 1.66; color: var(--body); margin: 0 0 26px;">Drawing on social-network analysis, dynamic modeling, and multiteam-systems research, I develop theory and methods that capture what static measures miss: the timing, structure, and micro-foundations of how people actually work together.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 9px;">
+          <sc-for list="{{ interests }}" as="tag" hint-placeholder-count="6">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.02em; color: var(--accent); padding: 7px 14px; border: 1px solid var(--accent-line); border-radius: var(--pill);">{{ tag }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal="1" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
+      <sc-for list="{{ themes }}" as="t" hint-placeholder-count="3">
+        <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 26px;">
+          <div style="font-family: 'Source Serif 4', serif; font-size: 30px; color: var(--gold); margin-bottom: 16px;">{{ t.num }}</div>
+          <h3 style="font-family: 'Source Serif 4', serif; font-weight: 500; font-size: 21px; line-height: 1.2; margin: 0 0 12px;">{{ t.title }}</h3>
+          <p style="font-size: 14.5px; line-height: 1.6; color: var(--body); margin: 0;">{{ t.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- PUBLICATIONS -->
+  <div id="publications" style="max-width: 1120px; margin: 0 auto; padding: 84px 32px 30px;">
+    <div data-reveal="1" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 40px; border-bottom: 1px solid var(--line-strong); padding-bottom: 22px;">
+      <div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;">02 — Selected Publications</div>
+        <h2 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 40px; line-height: 1.05; letter-spacing: -0.01em; margin: 0;">Peer-reviewed work</h2>
+      </div>
+      <a href="https://scholar.google.com/citations?user=pPkYRlwAAAAJ&amp;hl=en&amp;num=20&amp;oi=ao" target="_blank" rel="noopener" style="text-decoration: none; font-size: 14px; color: var(--accent); white-space: nowrap; padding-bottom: 4px;">Full list on Google Scholar ↗</a>
+    </div>
+
+    <div data-reveal="1" style="display: flex; flex-direction: column;">
+      <sc-for list="{{ pubs }}" as="p" hint-placeholder-count="8">
+        <div style="display: grid; grid-template-columns: 160px 1fr; gap: 28px; padding: 24px 0; border-bottom: 1px solid var(--line);">
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 500; color: var(--accent); letter-spacing: 0.02em; line-height: 1.4;">{{ p.outlet }}</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); margin-top: 4px;">{{ p.year }}</div>
+          </div>
+          <div>
+            <h3 style="font-family: 'Source Serif 4', serif; font-weight: 500; font-size: 20px; line-height: 1.32; margin: 0 0 8px;">{{ p.title }}</h3>
+            <div style="font-size: 13.5px; color: var(--muted); line-height: 1.5;">{{ p.authors }}</div>
+            <sc-if value="{{ p.badge }}" hint-placeholder-val="">
+              <div style="display: inline-block; margin-top: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--rust); background: var(--rust-bg); border: 1px solid var(--rust-line); border-radius: var(--radius-sm); padding: 4px 10px;">{{ p.badge }}</div>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div id="projects" style="background: var(--band); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 84px;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 84px 32px;">
+      <div data-reveal="1" style="margin-bottom: 44px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px;">03 — Ongoing Projects</div>
+        <h2 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 40px; line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 14px;">What I'm working on now</h2>
+        <p style="font-size: 17px; line-height: 1.6; color: var(--body); max-width: 620px; margin: 0;">A live look at the questions currently on my desk — from manuscripts under review to newly funded explorations of AI and teamwork.</p>
+      </div>
+      <div data-reveal="1" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+        <sc-for list="{{ projects }}" as="pr" hint-placeholder-count="4">
+          <div style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 30px 28px; display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 18px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: {{ pr.tagColor }}; background: {{ pr.tagBg }}; border-radius: var(--radius-sm); padding: 4px 10px;">{{ pr.status }}</span>
+            </div>
+            <h3 style="font-family: 'Source Serif 4', serif; font-weight: 500; font-size: 23px; line-height: 1.2; margin: 0 0 12px;">{{ pr.title }}</h3>
+            <p style="font-size: 14.5px; line-height: 1.6; color: var(--body); margin: 0 0 20px; flex: 1;">{{ pr.body }}</p>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px;">{{ pr.venue }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEACHING -->
+  <div id="teaching" style="max-width: 1120px; margin: 0 auto; padding: 84px 32px 30px;">
+    <div data-reveal="1" style="display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; margin-bottom: 48px;">
+      <div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px;">04 — Teaching</div>
+        <h2 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 40px; line-height: 1.08; letter-spacing: -0.01em; margin: 0;">Teaching across every level.</h2>
+      </div>
+      <div>
+        <p style="font-size: 17.5px; line-height: 1.66; color: var(--body); margin: 0 0 20px;">From doctoral seminars that train the next generation of scholars to MBA and undergraduate courses that bring organizational behavior to future managers, I translate rigorous team science into practical, level-appropriate learning.</p>
+        <div style="display: inline-flex; align-items: center; gap: 10px; font-size: 14px; color: var(--rust); background: var(--rust-bg); border: 1px solid var(--rust-line); border-radius: var(--radius-sm); padding: 10px 16px;">
+          <span style="font-family: 'Source Serif 4', serif; font-size: 20px; line-height: 1;">★</span>
+          Recognized four times by Iowa's graduating seniors for making a positive difference; Outstanding Graduate Teaching Award, UConn.
+        </div>
+      </div>
+    </div>
+    <div data-reveal="1" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
+      <sc-for list="{{ teaching }}" as="lv" hint-placeholder-count="3">
+        <div style="border-top: 2px solid var(--ink); padding-top: 20px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px;">{{ lv.level }}</div>
+          <div style="font-size: 12.5px; color: var(--muted); margin-bottom: 20px;">{{ lv.audience }}</div>
+          <sc-for list="{{ lv.courses }}" as="c" hint-placeholder-count="2">
+            <div style="margin-bottom: 18px;">
+              <div style="font-family: 'Source Serif 4', serif; font-size: 18px; line-height: 1.25; margin-bottom: 4px;">{{ c.name }}</div>
+              <div style="font-size: 13px; color: var(--muted); line-height: 1.45;">{{ c.meta }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- PRACTITIONER CTA -->
+  <div style="background: var(--dark-bg); color: var(--dark-ink); margin-top: 84px;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 90px 32px;">
+      <div data-reveal="1" style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;">
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dark-accent); margin-bottom: 20px;">05 — For Practitioners</div>
+          <h2 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 42px; line-height: 1.06; letter-spacing: -0.01em; margin: 0 0 22px;">Team science, put to work.</h2>
+          <p style="font-size: 17.5px; line-height: 1.65; color: var(--dark-body); margin: 0 0 30px; max-width: 480px;">My research is grounded in real organizations — emergency-response systems, action teams, and the changing role of AI in collaboration. I partner with practitioners who want evidence-based answers to hard questions about how their teams work.</p>
+          <a href="mailto:semin.park@psu.edu" style="text-decoration: none; display: inline-block; background: var(--dark-btn-bg); color: var(--dark-btn-fg); font-size: 15px; font-weight: 600; padding: 14px 28px; border-radius: var(--pill);">Start a conversation →</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <sc-for list="{{ practice }}" as="pp" hint-placeholder-count="3">
+            <div style="padding: 22px 0; border-top: 1px solid var(--dark-line); display: grid; grid-template-columns: 40px 1fr; gap: 18px;">
+              <div style="font-family: 'Source Serif 4', serif; font-size: 22px; color: var(--dark-accent);">{{ pp.num }}</div>
+              <div>
+                <div style="font-family: 'Source Serif 4', serif; font-size: 20px; margin-bottom: 8px;">{{ pp.title }}</div>
+                <div style="font-size: 14.5px; line-height: 1.55; color: var(--dark-body);">{{ pp.body }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT / FOOTER -->
+  <div id="contact" style="background: var(--bg);">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 84px 32px 40px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: end; padding-bottom: 46px; border-bottom: 1px solid var(--line-strong);">
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px;">Get in touch</div>
+          <h2 style="font-family: 'Source Serif 4', serif; font-weight: 400; font-size: 44px; line-height: 1.02; letter-spacing: -0.02em; margin: 0;">Let's talk about<br>teams.</h2>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <sc-for list="{{ links }}" as="ln" hint-placeholder-count="4">
+            <a href="{{ ln.href }}" target="_blank" rel="noopener" style="text-decoration: none; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 0; border-top: 1px solid var(--line);">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);">{{ ln.label }}</span>
+              <span style="font-size: 16px; color: var(--ink);">{{ ln.value }} ↗</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 26px; font-size: 12.5px; color: var(--muted);">
+        <div style="font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.04em;">Semin Park · Assistant Professor, Management &amp; Organization · Penn State</div>
+        <div style="font-family: 'IBM Plex Mono', monospace;">© 2026</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;theme&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;Penn State Blue&quot;, &quot;options&quot;: [&quot;Penn State Blue&quot;, &quot;Editorial&quot;, &quot;Bold Contrast&quot;, &quot;Neon Noir&quot;, &quot;Acid Pop&quot;, &quot;Mono Ink&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Color scheme&quot;},
+  &quot;edges&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;Soft&quot;, &quot;options&quot;: [&quot;Soft&quot;, &quot;Sharp&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Color scheme&quot;},
+  &quot;motif&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Color scheme&quot;}
+}">
+class Component extends DCLogic {
+  canvasRef = React.createRef();
+  heroRef = React.createRef();
+  rootRef = React.createRef();
+
+  static THEMES = {
+    'Penn State Blue': {
+      bg:'#FFFFFF', band:'#F2F4F7', card:'#F7F8FA', navBg:'rgba(255,255,255,0.86)',
+      ink:'#041E42', body:'#33404F', muted:'#6B7684',
+      line:'rgba(4,30,66,0.12)', lineStrong:'rgba(4,30,66,0.28)',
+      accent:'#1E4D8C', accentLine:'rgba(30,77,140,0.32)', accentBg:'rgba(30,77,140,0.10)', accent2:'#001E44',
+      gold:'#9C6B23', rust:'#9C6B23', rustBg:'rgba(156,107,35,0.10)', rustLine:'rgba(156,107,35,0.28)',
+      darkBg:'#001E44', darkInk:'#FFFFFF', darkBody:'#C9D3DE', darkMuted:'#93A4B8', darkAccent:'#8FB4DA', darkLine:'rgba(255,255,255,0.18)', darkBtnBg:'#FFFFFF', darkBtnFg:'#001E44',
+      net:'30,77,140',
+    },
+    'Editorial': {
+      bg:'#F4F0E7', band:'#EDE7DA', card:'#FBF9F3', navBg:'rgba(244,240,231,0.82)',
+      ink:'#17222E', body:'#33414D', muted:'#6B747E',
+      line:'rgba(23,34,46,0.12)', lineStrong:'rgba(23,34,46,0.28)',
+      accent:'#2E5C8A', accentLine:'rgba(46,92,138,0.32)', accentBg:'rgba(46,92,138,0.10)', accent2:'#041E42',
+      gold:'#C4B08A', rust:'#A85C2E', rustBg:'rgba(178,106,60,0.10)', rustLine:'rgba(178,106,60,0.28)',
+      darkBg:'#17222E', darkInk:'#EDE7DA', darkBody:'#C3CBD3', darkMuted:'#AEB7C1', darkAccent:'#8FB4DA', darkLine:'rgba(237,231,218,0.18)', darkBtnBg:'#EDE7DA', darkBtnFg:'#17222E',
+      net:'46,92,138',
+    },
+    'Bold Contrast': {
+      bg:'#0D0D0F', band:'#141417', card:'#17171B', navBg:'rgba(13,13,15,0.85)',
+      ink:'#F3F3ED', body:'#B7B8B1', muted:'#78796F',
+      line:'rgba(243,243,237,0.14)', lineStrong:'rgba(243,243,237,0.34)',
+      accent:'#E8FF3A', accentLine:'rgba(232,255,58,0.40)', accentBg:'rgba(232,255,58,0.12)', accent2:'#3B2BFF',
+      gold:'#FFB020', rust:'#FF5C39', rustBg:'rgba(255,92,57,0.14)', rustLine:'rgba(255,92,57,0.40)',
+      darkBg:'#E8FF3A', darkInk:'#0D0D0F', darkBody:'#2C2C1E', darkMuted:'#4B4B36', darkAccent:'#0D0D0F', darkLine:'rgba(13,13,15,0.22)', darkBtnBg:'#0D0D0F', darkBtnFg:'#E8FF3A',
+      net:'232,255,58',
+    },
+    'Neon Noir': {
+      bg:'#0B0B14', band:'#111124', card:'#14142A', navBg:'rgba(11,11,20,0.85)',
+      ink:'#F1ECFF', body:'#B2ACC9', muted:'#6E6886',
+      line:'rgba(241,236,255,0.12)', lineStrong:'rgba(241,236,255,0.30)',
+      accent:'#FF2E97', accentLine:'rgba(255,46,151,0.38)', accentBg:'rgba(255,46,151,0.12)', accent2:'#7B2BFF',
+      gold:'#00E5D0', rust:'#FF6B9D', rustBg:'rgba(255,107,157,0.12)', rustLine:'rgba(255,107,157,0.34)',
+      darkBg:'#7B2BFF', darkInk:'#FFFFFF', darkBody:'#E4DAFF', darkMuted:'#C7B7F7', darkAccent:'#00E5D0', darkLine:'rgba(255,255,255,0.20)', darkBtnBg:'#00E5D0', darkBtnFg:'#0B0B14',
+      net:'255,46,151',
+    },
+    'Acid Pop': {
+      bg:'#F4F5EF', band:'#E9EBDF', card:'#FFFFFF', navBg:'rgba(244,245,239,0.85)',
+      ink:'#0A0A0A', body:'#2E2E2E', muted:'#6A6A63',
+      line:'rgba(10,10,10,0.14)', lineStrong:'rgba(10,10,10,0.30)',
+      accent:'#1B00FF', accentLine:'rgba(27,0,255,0.30)', accentBg:'rgba(27,0,255,0.08)', accent2:'#C6FF00',
+      gold:'#0A0A0A', rust:'#FF3B00', rustBg:'rgba(255,59,0,0.10)', rustLine:'rgba(255,59,0,0.30)',
+      darkBg:'#0A0A0A', darkInk:'#F4F5EF', darkBody:'#C9CABF', darkMuted:'#8A8B80', darkAccent:'#C6FF00', darkLine:'rgba(244,245,239,0.18)', darkBtnBg:'#C6FF00', darkBtnFg:'#0A0A0A',
+      net:'27,0,255',
+    },
+    'Mono Ink': {
+      bg:'#FFFFFF', band:'#F0F0F0', card:'#FAFAFA', navBg:'rgba(255,255,255,0.85)',
+      ink:'#0A0A0A', body:'#2A2A2A', muted:'#6E6E6E',
+      line:'rgba(10,10,10,0.16)', lineStrong:'rgba(10,10,10,0.50)',
+      accent:'#0A0A0A', accentLine:'rgba(10,10,10,0.40)', accentBg:'rgba(10,10,10,0.06)', accent2:'#0A0A0A',
+      gold:'#0A0A0A', rust:'#0A0A0A', rustBg:'rgba(10,10,10,0.06)', rustLine:'rgba(10,10,10,0.40)',
+      darkBg:'#0A0A0A', darkInk:'#FFFFFF', darkBody:'#C8C8C8', darkMuted:'#8A8A8A', darkAccent:'#FFFFFF', darkLine:'rgba(255,255,255,0.20)', darkBtnBg:'#FFFFFF', darkBtnFg:'#0A0A0A',
+      net:'10,10,10',
+    },
+  };
+
+  _pal() {
+    return Component.THEMES[this.props.theme] || Component.THEMES['Editorial'];
+  }
+  _edges() {
+    return this.props.edges === 'Sharp'
+      ? { radius: '0px', radiusSm: '0px', pill: '0px' }
+      : { radius: '10px', radiusSm: '6px', pill: '999px' };
+  }
+
+  applyTheme() {
+    const el = this.rootRef.current;
+    if (!el) return;
+    const p = this._pal();
+    const set = (k, v) => el.style.setProperty(k, v);
+    set('--bg', p.bg); set('--band', p.band); set('--card', p.card); set('--nav-bg', p.navBg);
+    set('--ink', p.ink); set('--body', p.body); set('--muted', p.muted);
+    set('--line', p.line); set('--line-strong', p.lineStrong);
+    set('--accent', p.accent); set('--accent-line', p.accentLine); set('--accent-bg', p.accentBg); set('--accent-2', p.accent2);
+    set('--gold', p.gold); set('--rust', p.rust); set('--rust-bg', p.rustBg); set('--rust-line', p.rustLine);
+    set('--dark-bg', p.darkBg); set('--dark-ink', p.darkInk); set('--dark-body', p.darkBody); set('--dark-muted', p.darkMuted);
+    set('--dark-accent', p.darkAccent); set('--dark-line', p.darkLine); set('--dark-btn-bg', p.darkBtnBg); set('--dark-btn-fg', p.darkBtnFg);
+    const e = this._edges();
+    set('--radius', e.radius); set('--radius-sm', e.radiusSm); set('--pill', e.pill);
+    this._netRGB = p.net;
+    try { document.body.style.background = p.bg; } catch (err) {}
+  }
+
+  componentDidMount() {
+    this.applyTheme();
+    if (this.props.motif !== false) this._startNetwork();
+    this._startReveal();
+  }
+  componentDidUpdate() {
+    this.applyTheme();
+    const wantMotif = this.props.motif !== false;
+    if (wantMotif && !this._raf && this.canvasRef.current) this._startNetwork();
+    if (!wantMotif && this._raf) { cancelAnimationFrame(this._raf); this._raf = null; }
+  }
+  componentWillUnmount() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._ro) this._ro.disconnect();
+  }
+
+  _startReveal() {
+    const root = this.rootRef.current;
+    if (!root || !('IntersectionObserver' in window)) return;
+    const els = root.querySelectorAll('[data-reveal]');
+    els.forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach((el) => io.observe(el));
+  }
+
+  _startNetwork() {
+    const canvas = this.canvasRef.current;
+    const hero = this.heroRef.current;
+    if (!canvas || !hero) return;
+    const ctx = canvas.getContext('2d');
+    let W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let nodes = [];
+
+    const build = () => {
+      const r = hero.getBoundingClientRect();
+      W = r.width; H = r.height;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.max(28, Math.min(52, Math.round(W / 26)));
+      nodes = new Array(count).fill(0).map(() => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        r: 1.4 + Math.random() * 2.2,
+      }));
+    };
+    build();
+
+    if (this._ro) this._ro.disconnect();
+    this._ro = new ResizeObserver(build);
+    this._ro.observe(hero);
+
+    const LINK = 168;
+    const draw = () => {
+      const rgb = this._netRGB || '30,77,140';
+      ctx.clearRect(0, 0, W, H);
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+      }
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < LINK) {
+            const alpha = (1 - d / LINK) * 0.16;
+            ctx.strokeStyle = 'rgba(' + rgb + ',' + alpha + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        }
+      }
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        ctx.fillStyle = 'rgba(' + rgb + ',0.30)';
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      this._raf = requestAnimationFrame(draw);
+    };
+    draw();
+  }
+
+  renderVals() {
+    const warm = { tagColor: 'var(--rust)', tagBg: 'var(--rust-bg)' };
+    const cool = { tagColor: 'var(--accent)', tagBg: 'var(--accent-bg)' };
+    return {
+      canvasRef: this.canvasRef,
+      heroRef: this.heroRef,
+      rootRef: this.rootRef,
+      motifOn: this.props.motif !== false,
+
+      facts: [
+        { big: 'Research', label: 'A network science of teams \u2014 conflict, dynamics & interdependence \u2014 published in the field\u2019s leading journals' },
+        { big: 'Teaching', label: 'Doctoral, MBA & undergraduate courses that translate rigorous team science into practice' },
+        { big: 'Service', label: 'Editorial and reviewing service for premier management and applied psychology journals' },
+        { big: 'Awards', label: 'INGROUP Early Career Award and repeated recognition for teaching excellence' },
+      ],
+
+      interests: ['Team Conflict', 'Social Networks', 'Multiteam Systems', 'Team Dynamics', 'Interdependence', 'AI & Teaming'],
+
+      themes: [
+        { num: '01', title: 'Conflict as a network', body: 'Reconceptualizing team conflict as a structure of relationships \u2014 who clashes with whom \u2014 rather than an average level, revealing when friction fuels or fractures performance.' },
+        { num: '02', title: 'Dynamics over time', body: 'Modeling how team processes, interdependence, and emergent states evolve moment to moment, using dynamic measurement and computer-aided text analysis.' },
+        { num: '03', title: 'Systems of teams', body: 'Studying multiteam systems and action teams in high-stakes settings \u2014 emergency response, complex operations \u2014 where coordination across teams decides outcomes.' },
+      ],
+
+      pubs: [
+        { outlet: 'J. Applied Psychology', year: '2026', title: 'Blessing in Disguise: Membership Change and Human Capital Resource Utilization', authors: 'Gallagher, P., Park, S., Roebuck, A., Mathieu, J., & Dong, Y.', badge: 'Conditionally Accepted' },
+        { outlet: 'Small Group Research', year: '2026', title: 'Teams as Patterns of Interaction: Rethinking Team Dynamics for the Next Decade', authors: 'Park, S.', badge: 'Invited essay' },
+        { outlet: 'Academy of Mgmt Journal', year: '2024', title: 'Intra-individual Conflict and Task Performance in a Multiteam Context', authors: 'Park, S., Luciano, M., Mathieu, J. E., & Fenters, V.', badge: '' },
+        { outlet: 'J. Applied Psychology', year: '2022', title: 'Indexing Dynamic Collective Constructs Using Computer-Aided Text Analysis', authors: 'Mathieu, J., Wolfson, N., Park, S., Luciano, M., Bedwell, W., Ramsay, P. S., & Klock, E.', badge: '' },
+        { outlet: 'Academy of Mgmt Journal', year: '2021', title: 'The Double-Edged Sword of Leadership Task Transitions in Emergency Response Multiteam Systems', authors: 'Luciano, M., Fenters, V., Park, S., Bartels, A., & Tannenbaum, S.', badge: 'AMJ transparency exemplar' },
+        { outlet: 'Journal of Management', year: '2020', title: 'Understanding Work Teams from a Network Perspective: A Review and Future Directions', authors: 'Park, S., Grosser, T. J., Roebuck, A. A., & Mathieu, J. E.', badge: '' },
+        { outlet: 'Academy of Mgmt Review', year: '2020', title: 'A Network Conceptualization of Team Conflict', authors: 'Park, S., Mathieu, J., & Grosser, T. A.', badge: 'Top 10 most-read & most-cited, 2020' },
+        { outlet: 'American Psychologist', year: '2018', title: 'The Evolution of Work Team Research Since Hawthorne', authors: 'Mathieu, J. E., Wolfson, M. A., & Park, S.', badge: '' },
+      ],
+
+      projects: [
+        { status: 'R&R · Organization Science', tagColor: warm.tagColor, tagBg: warm.tagBg, title: 'How to Manage a Good Fight', body: 'A longitudinal study of how conflict ties and members\u2019 perceptions of conflict co-evolve \u2014 and how their interplay determines whether a team\u2019s disagreements build or break performance.', venue: 'With Reinke, K. & Schecter, A. · 2nd-round revision' },
+        { status: 'In development', tagColor: cool.tagColor, tagBg: cool.tagBg, title: 'Dynamic Team Interdependence Theory', body: 'A new theory reframing interdependence as something teams continuously renegotiate rather than a fixed task attribute, with implications for how we design and study collaboration.', venue: 'Target: Academy of Management Review' },
+        { status: 'Grant-funded · 2026', tagColor: warm.tagColor, tagBg: warm.tagBg, title: 'Teams & AI: Smeal Research Intelligence', body: 'Funded by a Smeal AI Exploration Grant, this project examines how teams navigate, interpret, and make sense of AI use in collaborative decision-making \u2014 and what that means for trust.', venue: 'AI Exploration Grant, Smeal College of Business' },
+        { status: 'In development', tagColor: cool.tagColor, tagBg: cool.tagBg, title: 'Helping Configurations in Teams', body: 'Mapping who helps whom within a team as a network configuration, and testing how different patterns of helping shape coordination, workload, and collective performance.', venue: 'Target: Journal of Applied Psychology' },
+      ],
+
+      teaching: [
+        { level: 'Doctoral', audience: 'PhD seminars', courses: [
+          { name: 'Seminar in Organizational Behavior', meta: 'MGMT 528 · Penn State · 2024, 2025' },
+          { name: 'Group Processes', meta: 'MGMT 7340 · University of Iowa · 2023' },
+        ]},
+        { level: 'Graduate / MBA', audience: 'Master\u2019s & executive', courses: [
+          { name: 'Managing People in Organizations', meta: 'BA 801 · Penn State · 100+ students / year' },
+          { name: 'Management in Organizations', meta: 'MBA 8120 · University of Iowa · hybrid & online' },
+        ]},
+        { level: 'Undergraduate', audience: 'Bachelor\u2019s', courses: [
+          { name: 'Individuals, Teams & Organizations', meta: 'MGMT 3200 · University of Iowa' },
+          { name: 'Managerial & Interpersonal Behavior', meta: 'MGMT 3101 · University of Connecticut' },
+        ]},
+      ],
+
+      practice: [
+        { num: '01', title: 'Field-tested research', body: 'Multiteam and action-team studies conducted with real organizations, including U.S. Army Research Institute\u2013funded work on emergency response.' },
+        { num: '02', title: 'Translated for managers', body: 'Featured in Harvard Business Review on when to take on tasks outside your job description \u2014 turning team science into everyday guidance.' },
+        { num: '03', title: 'Applied experience', body: 'Five years as a research consultant to The Group for Organizational Effectiveness, plus HR and strategy work across industry.' },
+      ],
+
+      links: [
+        { label: 'Email', href: 'mailto:semin.park@psu.edu', value: 'semin.park@psu.edu' },
+        { label: 'ORCID', href: 'https://orcid.org/0000-0001-5121-1519', value: '0000-0001-5121-1519' },
+        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/semin-park-0021b245/', value: 'linkedin.com/in/semin-park-0021b245' },
+        { label: 'Institution', href: 'https://directory.smeal.psu.edu/svp6397', value: 'Smeal College of Business' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
